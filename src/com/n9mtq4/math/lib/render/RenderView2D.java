@@ -4,8 +4,10 @@ import com.n9mtq4.math.lib.Game;
 import com.n9mtq4.math.lib.Main;
 import com.n9mtq4.math.lib.parts.LineSegment2d;
 import com.n9mtq4.math.lib.parts.Point2d;
+import com.n9mtq4.math.lib.parts.Vector4d;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 /**
  * Created by Will on 9/4/14.
@@ -124,6 +126,20 @@ public class RenderView2D extends Render {
 		
 	}
 	
+	public void vectors(Graphics g, Game game) {
+		
+		for (Vector4d v : Main.getWindow().getDisplay().partManager.vector4d) {
+			
+			if (v.isShowOnGraph()) {
+				
+				putVector(g, game, v);
+				
+			}
+			
+		}
+		
+	}
+	
 	public void arcs(Graphics g, Game game) {
 		
 		
@@ -142,14 +158,37 @@ public class RenderView2D extends Render {
 		
 	}
 	
+	public void putVector(Graphics g, Game game, Vector4d v) {
+		
+		Color bc = g.getColor();
+		g.setColor(v.getColor());
+		
+		Graphics2D g1 = (Graphics2D) g;
+		int x = (int) (centerx + (v.getX() * game.getScale()));
+		int y = (int) (centery - (v.getY() * game.getScale()));
+		int x1 = (int) (centerx + (v.getX1() * game.getScale()));
+		int y1 = (int) (centery - (v.getY1() * game.getScale()));
+		double dx = x1 - x, dy = y1 - y;
+		double angle = Math.atan2(dy, dx);
+		int len = (int) Math.sqrt(dx * dx + dy * dy);
+		AffineTransform at = AffineTransform.getTranslateInstance(x, y);
+		at.concatenate(AffineTransform.getRotateInstance(angle));
+		g1.transform(at);
+		g.drawLine(0, 0, len, 0);
+		g.fillPolygon(new int[] {len, len-5, len-5, len}, new int[] {0, -5, 5, 0}, 4);
+		
+		g.setColor(bc);
+		
+	}
+	
 	public void putArc(Graphics g, Game game, double x, double y, double distance, int angle1, int angle2, Color color) {
 		
 		Color bc = g.getColor();
 		g.setColor(color);
 		
-		int x1 = (int) (centerx + (x * game.getScale()));
-		int y1 = (int) (centery - (y * game.getScale()));
 		int distance1 = (int) (distance * game.getScale());
+		int x1 = (int) (centerx + (x * game.getScale()));
+		int y1 = (int) (centery - (y * game.getScale()) - (distance * game.getScale()));
 		
 		g.drawArc(x1, y1, distance1, distance1, angle1, angle2);
 		g.setColor(bc);

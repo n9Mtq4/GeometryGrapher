@@ -18,6 +18,7 @@ public class PartManager {
 	public ArrayList<Point2d> point2d = new ArrayList<Point2d>();
 	public ArrayList<LineSegment2d> lineSegment2d = new ArrayList<LineSegment2d>();
 	public ArrayList<Arc2d> arc2d = new ArrayList<Arc2d>();
+	public ArrayList<Vector4d> vector4d = new ArrayList<Vector4d>();
 	
 	public PartManager() {
 		

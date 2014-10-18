@@ -30,7 +30,7 @@ public class Screen2D extends Screen {
 			view.coordplane(g, game);
 			view.lines(g, game);
 			view.points(g, game);
-//			view.putArc(g, game, -4, 4, 3, 0, 90, new Color(0, 0, 255));
+			view.vectors(g, game);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
