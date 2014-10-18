@@ -12,7 +12,7 @@ public class Main {
 		
 		if (instance == null) {
 			
-			new ChooseWindow();
+			instance = new ChooseWindow();
 			
 		}
 		
