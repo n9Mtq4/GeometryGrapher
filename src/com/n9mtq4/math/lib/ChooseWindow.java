@@ -3,6 +3,7 @@ package com.n9mtq4.math.lib;
 import com.n9mtq4.math.lib.render.Display;
 import com.n9mtq4.math.lib.render.Display2D;
 import com.n9mtq4.math.lib.render.Display3D;
+import com.n9mtq4.math.sysin.Console;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +27,7 @@ public class ChooseWindow {
 		Display d = new Display2D(new Dimension(Display.DEFAULT_WIDTH, Display.DEFAULT_WIDTH));
 		if (instance == null) instance = new GraphWindow("2D Window", d);
 		Main.setWindow(instance);
+		new Console(d);
 //		gui();
 		
 	}
