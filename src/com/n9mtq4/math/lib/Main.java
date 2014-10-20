@@ -1,5 +1,7 @@
 package com.n9mtq4.math.lib;
 
+import com.n9mtq4.math.sysin.Console;
+
 /**
  * Created by Will on 9/3/14.
  */
@@ -7,6 +9,7 @@ public class Main {
 	
 	private static ChooseWindow instance;
 	private static GraphWindow window;
+	private static Console console;
 	
 	public static void main(String[] args) {
 		
@@ -32,6 +35,14 @@ public class Main {
 	
 	public static void setWindow(GraphWindow window) {
 		Main.window = window;
+	}
+	
+	public static Console getConsole() {
+		return console;
+	}
+	
+	public static void setConsole(Console console) {
+		Main.console = console;
 	}
 	
 }

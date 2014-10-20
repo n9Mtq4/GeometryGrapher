@@ -27,7 +27,7 @@ public class ChooseWindow {
 		Display d = new Display2D(new Dimension(Display.DEFAULT_WIDTH, Display.DEFAULT_WIDTH));
 		if (instance == null) instance = new GraphWindow("2D Window", d);
 		Main.setWindow(instance);
-		new Console(d);
+		Main.setConsole(new Console(d));
 //		gui();
 		
 	}
