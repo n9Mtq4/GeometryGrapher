@@ -22,9 +22,7 @@ public class Console {
 	public Console(Display parent) {
 		
 		this.parent = parent;
-		if (parser == null) {
-			parser = new ConsoleParser(this);
-		}
+		parser = new ConsoleParser(this);
 		gui();
 		
 	}
