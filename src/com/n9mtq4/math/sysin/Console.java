@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 /**
  * Created by Will on 10/19/14.
@@ -18,11 +21,14 @@ public class Console {
 	private NTextArea area;
 	private JTextField field;
 	private JScrollPane scrollArea;
+	private ArrayList<String> history;
+	private int historyIndex;
 	
 	public Console(Display parent) {
 		
 		this.parent = parent;
 		parser = new ConsoleParser(this);
+		history = new ArrayList<String>();
 		gui();
 		
 	}
@@ -54,6 +60,30 @@ public class Console {
 				onFieldEnter(actionEvent);
 			}
 		});
+		field.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent keyEvent) {
+			}
+			@Override
+			public void keyPressed(KeyEvent keyEvent) {
+				if (keyEvent.getKeyCode() == KeyEvent.VK_UP) {
+					if (historyIndex > 0) {
+						historyIndex--;
+						field.setText(history.get(historyIndex));
+						field.setCaretPosition(field.getText().length());
+					}
+				}else if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN) {
+					if (historyIndex < history.size() - 1) {
+						historyIndex++;
+						field.setText(history.get(historyIndex));
+						field.setCaretPosition(field.getText().length());
+					}
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent keyEvent) {
+			}
+		});
 		
 	}
 	
@@ -61,8 +91,15 @@ public class Console {
 		
 		JTextField source = (JTextField) e.getSource();
 		String text = source.getText();
-		System.out.println(text);
-		parser.push(text);
+		if (!text.trim().equals("")) {
+			source.setText("");
+			history.add(text);
+			historyIndex = history.size();
+			parser.push(text);
+		}
+		
+	}
+	
 	public void println(String text) {
 		
 		print(text + "\n");
