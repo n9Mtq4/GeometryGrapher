@@ -46,6 +46,7 @@ public class Console {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
+		field.requestFocus();
 		field.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
