@@ -2,6 +2,7 @@ package com.n9mtq4.math.lib.render;
 
 import com.n9mtq4.math.lib.Game;
 import com.n9mtq4.math.lib.Main;
+import com.n9mtq4.math.lib.parts.Arc2d;
 import com.n9mtq4.math.lib.parts.LineSegment2d;
 import com.n9mtq4.math.lib.parts.Point2d;
 import com.n9mtq4.math.lib.parts.Vector4d;
@@ -142,7 +143,13 @@ public class RenderView2D extends Render {
 	
 	public void arcs(Graphics g, Game game) {
 		
-		
+		for (Arc2d a : Main.getWindow().getDisplay().partManager.arc2d) {
+			
+			if (a.isShowOnGraph()) {
+				putArc(g, game, a.getX(), a.getY(), a.getSize(), a.getAngle1(), a.getAngle2(), a.getColor());
+			}
+			
+		}
 		
 	}
 	
@@ -181,16 +188,16 @@ public class RenderView2D extends Render {
 		
 	}
 	
-	public void putArc(Graphics g, Game game, double x, double y, double distance, int angle1, int angle2, Color color) {
+	public void putArc(Graphics g, Game game, double x, double y, double distance, double angle1, double angle2, Color color) {
 		
 		Color bc = g.getColor();
 		g.setColor(color);
 		
 		int distance1 = (int) (distance * game.getScale());
 		int x1 = (int) (centerx + (x * game.getScale()));
-		int y1 = (int) (centery - (y * game.getScale()) - (distance * game.getScale()));
+		int y1 = (int) (centery - (y * game.getScale()));
 		
-		g.drawArc(x1, y1, distance1, distance1, angle1, angle2);
+		g.drawArc(x1, y1, distance1, distance1, (int) angle1, (int) angle2);
 		g.setColor(bc);
 		
 	}
