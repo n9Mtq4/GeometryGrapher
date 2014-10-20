@@ -15,7 +15,7 @@ public class Console {
 	private Display parent;
 	private ConsoleParser parser;
 	private JFrame frame;
-	private JTextArea area;
+	private NTextArea area;
 	private JTextField field;
 	private JScrollPane scrollArea;
 	
@@ -31,7 +31,8 @@ public class Console {
 		
 		frame = new JFrame("Console");
 		
-		area = new JTextArea();
+		area = new NTextArea();
+		area.setUserEditable(false);
 		field = new JTextField();
 		scrollArea = new JScrollPane(area);
 		scrollArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -62,6 +63,27 @@ public class Console {
 		String text = source.getText();
 		System.out.println(text);
 		parser.push(text);
+	public void println(String text) {
+		
+		print(text + "\n");
+		
+	}
+	
+	public void println(String text, Color color) {
+		
+		print(text + "\n", color);
+		
+	}
+	
+	public void print(String text) {
+		
+		area.append(text, Color.BLACK);
+		
+	}
+	
+	public void print(String text, Color color) {
+		
+		area.append(text, color);
 		
 	}
 	
@@ -89,11 +111,11 @@ public class Console {
 		this.frame = frame;
 	}
 	
-	public JTextArea getArea() {
+	public NTextArea getArea() {
 		return area;
 	}
 	
-	public void setArea(JTextArea area) {
+	public void setArea(NTextArea area) {
 		this.area = area;
 	}
 	
