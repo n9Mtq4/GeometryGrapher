@@ -55,7 +55,7 @@ public class PartManager {
 		
 		frame.add(scroll);
 		
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.pack();
 		frame.setSize(200, 300);
 		frame.setResizable(false);
