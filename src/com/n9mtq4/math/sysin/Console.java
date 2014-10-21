@@ -47,7 +47,7 @@ public class Console {
 		frame.add(scrollArea, BorderLayout.CENTER);
 		frame.add(field, BorderLayout.SOUTH);
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.pack();
 		frame.setSize(360, 240);
 		frame.setLocationRelativeTo(null);
