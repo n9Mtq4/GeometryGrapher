@@ -41,8 +41,6 @@ public class Display extends Canvas implements Runnable {
 		this.HEIGHT = (int) d.getHeight();
 		
 		partManager = new PartManager();
-//		TODO: remove
-		partManager.managerAll();
 		inputHandler = new InputHandler(this);
 		addKeyListener(inputHandler);
 		addMouseWheelListener(inputHandler);
