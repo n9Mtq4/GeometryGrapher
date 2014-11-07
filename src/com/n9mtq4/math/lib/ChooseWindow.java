@@ -1,9 +1,9 @@
 package com.n9mtq4.math.lib;
 
+import com.n9mtq4.console.lib.Console;
 import com.n9mtq4.math.lib.render.Display;
 import com.n9mtq4.math.lib.render.Display2D;
 import com.n9mtq4.math.lib.render.Display3D;
-import com.n9mtq4.math.sysin.Console;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +27,9 @@ public class ChooseWindow {
 		Display d = new Display2D(new Dimension(Display.DEFAULT_WIDTH, Display.DEFAULT_WIDTH));
 		if (instance == null) instance = new GraphWindow("2D Window", d);
 		Main.setWindow(instance);
-		Main.setConsole(new Console(d));
+		Main.setConsole(new Console());
+		Main.getConsole().getFrame().setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		Main.getConsole().redirectStdoutOn(true);
 //		gui();
 		
 	}

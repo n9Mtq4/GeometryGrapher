@@ -1,6 +1,6 @@
 package com.n9mtq4.math.lib;
 
-import com.n9mtq4.math.sysin.Console;
+import com.n9mtq4.console.lib.Console;
 
 /**
  * Created by Will on 9/3/14.
